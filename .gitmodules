@@ -1,0 +1,9 @@
+[submodule "bundles/microsoft/vscode-java-test"]
+	path = bundles/microsoft/vscode-java-test
+	url = https://github.com/microsoft/vscode-java-test
+[submodule "lua/core/coolio_colours"]
+	path = lua/core/coolio_colours
+	url = https://github.com/rktjmp/lush-template.git
+[submodule "bundles/java-debug"]
+	path = bundles/java-debug
+	url = https://github.com/microsoft/java-debug
