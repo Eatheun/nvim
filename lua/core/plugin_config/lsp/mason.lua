@@ -32,6 +32,7 @@ return {
 				"tailwindcss",
 				"lua_ls",
 				"jdtls",
+				"ts_ls",
 				"graphql",
 				"emmet_ls",
 				"prismals",

@@ -1,14 +1,18 @@
 return {
 	"jose-elias-alvarez/nvim-lsp-ts-utils",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"neovim/nvim-lspconfig",
+	},
 	config = function()
 		local lspconfig = require("lspconfig")
 
-		lspconfig.tsserver.setup({
+		lspconfig.ts_ls.setup({
 			-- Needed for inlayHints. Merge this table with your settings or copy
 			-- it from the source if you want to add your own init_options.
 			init_options = require("nvim-lsp-ts-utils").init_options,
 			--
-			on_attach = function(client, bufnr)
+			on_attach = function(client, _)
 				local ts_utils = require("nvim-lsp-ts-utils")
 
 				-- defaults
@@ -64,9 +68,10 @@ return {
 
 				-- no default maps, so you may want to define some here
 				local opts = { silent = true, noremap = true }
-				vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", opts)
-				vim.api.nvim_buf_set_keymap(bufnr, "n", "gr", ":TSLspRenameFile<CR>", opts)
-				vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", ":TSLspImportAll<CR>", opts)
+				local keymap = vim.keymap
+				keymap.set("n", "<leader>tso", ":TSLspOrganize<CR>", opts)
+				keymap.set("n", "<leader>tsr", ":TSLspRenameFile<CR>", opts)
+				keymap.set("n", "<leader>tsi", ":TSLspImportAll<CR>", opts)
 			end,
 		})
 	end,
