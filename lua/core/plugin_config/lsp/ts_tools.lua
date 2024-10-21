@@ -28,7 +28,7 @@ return {
 				-- described below
 				tsserver_format_options = {},
 				tsserver_file_preferences = {
-					importModuleSpecifierEnding = "auto" | "minimal" | "index" | "js" | "ts" | "tsx",
+					importModuleSpecifierEnding = { "auto", "minimal", "index", "js", "ts", "tsx" },
 				},
 				-- locale of all tsserver messages, supported locales you can find here:
 				-- https://github.com/microsoft/TypeScript/blob/3c221fc086be52b19801f6e8d82596d04607ede6/src/compiler/utilitiesPublic.ts#L620
