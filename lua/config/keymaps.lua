@@ -17,26 +17,3 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 -- Terminal commands
 keymap.set("n", "<leader>nt", "<cmd>edit term://bash<CR>", { desc = "Open new terminal" })
 keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
-
--- Java debugging
-keymap.set("n", "<leader>co", "<Cmd>lua require'jdtls'.organize_imports()<CR>", { desc = "Organize Imports" })
-keymap.set("n", "<leader>crv", "<Cmd>lua require('jdtls').extract_variable()<CR>", { desc = "Extract Variable" })
-keymap.set(
-	"v",
-	"<leader>crv",
-	"<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>",
-	{ desc = "Extract Variable" }
-)
-keymap.set("n", "<leader>crc", "<Cmd>lua require('jdtls').extract_constant()<CR>", { desc = "Extract Constant" })
-keymap.set(
-	"v",
-	"<leader>crc",
-	"<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>",
-	{ desc = "Extract Constant" }
-)
-keymap.set("v", "<leader>crm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", { desc = "Extract Method" })
-
--- Debugging
-keymap.set("n", "<leader>jtc", "<Cmd> lua require'jdtls'.test_class()<CR>", { desc = "Test current class" })
-keymap.set("n", "<leader>jtm", "<Cmd> lua require'jdtls'.test_nearest_method()<CR>", { desc = "Test nearest method" })
-keymap.set("n", "<leader>b", "<Cmd> lua require('dap').toggle_breakpoint()<CR>")

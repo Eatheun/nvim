@@ -12,7 +12,7 @@ opt.number = true
 opt.relativenumber = true
 
 opt.wrap = true
-opt.backspace = 'indent,eol,start'
+opt.backspace = "indent,eol,start"
 opt.showcmd = true
 opt.laststatus = 2
 opt.autowrite = true
@@ -27,5 +27,3 @@ opt.clipboard:append("unnamedplus")
 
 opt.splitright = true
 opt.splitbelow = true
-
-vim.cmd [[colorscheme maccas-unhinged]]
