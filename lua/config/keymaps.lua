@@ -17,3 +17,28 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 -- Terminal commands
 keymap.set("n", "<leader>nt", "<cmd>edit term://bash<CR>", { desc = "Open new terminal" })
 keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+
+-- Java tools
+keymap.set("n", "<leader>jr", "<cmd> JavaRunnerRunMain <CR>", { desc = "Run Java main" })
+keymap.set("n", "<leader>jdc", "<cmd> JavaTestDebugCurrentClass <CR>", { desc = "Debug Java class" })
+keymap.set("n", "<leader>jdm", "<cmd> JavaTestDebugCurrentMethod <CR>", { desc = "Debug Java method" })
+keymap.set("n", "<leader>jtc", "<cmd> JavaTestRunCurrentClass <CR>", { desc = "Test Java class" })
+keymap.set("n", "<leader>jtm", "<cmd> JavaTestRunCurrentMethod <CR>", { desc = "Test Java method" })
+keymap.set("n", "<leader>jtv", "<cmd> JavaTestViewLastReport <CR>", { desc = "View last Java test" })
+
+-- Debugging
+vim.keymap.set("n", "<F5>", function()
+  require("dap").continue()
+end)
+vim.keymap.set("n", "<F10>", function()
+  require("dap").step_over()
+end)
+vim.keymap.set("n", "<F11>", function()
+  require("dap").step_into()
+end)
+vim.keymap.set("n", "<F12>", function()
+  require("dap").step_out()
+end)
+vim.keymap.set("n", "<leader>b", function()
+  require("dap").toggle_breakpoint()
+end)
