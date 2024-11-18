@@ -40,13 +40,13 @@ local theme = lush(function(injected_functions)
   local red_mac = hsl("#c31c2b")
   local red_mac_dark = hsl("#950505")
   local red_mac_black = hsl("#420505")
-  local orange_mac = hsl("#ff4500")
+  local orange_mac = hsl("#ff5800")
   local orange_mac_dark = hsl("#b93a04")
   local yellow_mac = hsl("#fdaf17")
   local yellow_mac2 = hsl("#ffce84")
   local yellow_mac_light = hsl("#fff0c0")
   local yellow_mac_punchy = hsl("#ffef00")
-  local green_mac = hsl("#add304")
+  local green_mac = hsl("#9dd304")
   local green_mac_light = hsl("#eaff61")
   return {
     -- Comment them out and add your own properties to override the defaults.
@@ -54,7 +54,7 @@ local theme = lush(function(injected_functions)
     -- like the 'Normal' group.
     --
     -- ColorColumn    { }, -- Columns set with 'colorcolumn'
-    Conceal({ fg = red_mac_dark }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
+    Conceal({ fg = green_mac }), -- Placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor({ fg = red_mac, bg = orange_mac_dark }), -- Character under the cursor
     -- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
     -- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
@@ -71,7 +71,7 @@ local theme = lush(function(injected_functions)
     -- TermCursorNC   { }, -- Cursor in an unfocused terminal
     -- ErrorMsg       { }, -- Error messages on the command line
     -- VertSplit      { }, -- Column separating vertically split windows
-    -- Folded         { }, -- Line used for closed folds
+    Folded({ bg = red_mac, fg = yellow_mac }), -- Line used for closed folds
     FoldColumn({ fg = red_mac, bg = orange_mac }), -- 'foldcolumn'
     SignColumn({ FoldColumn }), -- Column where |signs| are displayed
     IncSearch({ bg = red_mac_dark }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
@@ -92,7 +92,7 @@ local theme = lush(function(injected_functions)
     NormalFloat({ Normal }), -- Normal text in floating windows.
     -- FloatBorder    { }, -- Border of floating windows.
     -- FloatTitle     { }, -- Title of floating windows.
-    -- NormalNC       { }, -- normal text in non-current windows
+    NormalNC({}), -- normal text in non-current windows
     Pmenu({ bg = red_mac_black, fg = yellow_mac_punchy, gui = "bold" }), -- Popup menu: Normal item.
     PmenuSel({ bg = Pmenu.bg.li(15), fg = orange_mac.li(30) }), -- Popup menu: Selected item.
     PmenuKind({ Pmenu }), -- Popup menu: Normal item "kind"
@@ -138,7 +138,7 @@ local theme = lush(function(injected_functions)
     Boolean({ Number }), --   A boolean constant: TRUE, false
     Float({ Number }), --   A floating point constant: 2.3e10
 
-    Identifier({ fg = green_mac }), -- (*) Any variable name
+    Identifier({ fg = yellow_mac_punchy, gui = "bold" }), -- (*) Any variable name
     Function({ fg = yellow_mac.ro(20).sa(90), gui = "bold" }), --   Function name (also: methods for classes)
 
     -- Statement      { }, -- (*) Any statement
@@ -164,13 +164,18 @@ local theme = lush(function(injected_functions)
     -- SpecialChar    { }, --   Special character in a constant
     -- Tag            { }, --   You can use CTRL-] on this
     -- Delimiter      { }, --   Character that needs attention
-    -- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
+    -- SpecialComment({}), --   Special things inside a comment (e.g. '\n')
     -- Debug          { }, --   Debugging statements
 
     -- Underlined     { gui = "underline" }, -- Text that stands out, HTML links
     -- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
     -- Error          { }, -- Any erroneous construct
     Todo({ bg = yellow_mac_punchy, fg = red_mac_black }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+
+    -- Tabs
+    -- TabLine        { }, -- Tab pages line, not active tab page label
+    -- TabLineFill    { }, -- Tab pages line, where there are no labels
+    -- TabLineSel     { }, -- Tab pages line, active tab page label
 
     -- These groups are for the native LSP client and diagnostic system. Some
     -- other LSP clients may use these groups, or use their own. Consult your
@@ -231,7 +236,7 @@ local theme = lush(function(injected_functions)
     -- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
     -- sym"@text.literal"      { }, -- Comment
-    -- sym"@text.reference"    { }, -- Identifier
+    sym("@text.reference")({ fg = Identifier.fg }), -- Identifier
     -- sym"@text.title"        { }, -- Title
     -- sym"@text.uri"          { }, -- Underlined
     -- sym"@text.underline"    { }, -- Underlined
@@ -265,7 +270,7 @@ local theme = lush(function(injected_functions)
     -- sym"@operator"          { }, -- Operator
     -- sym"@keyword"           { }, -- Keyword
     -- sym"@exception"         { }, -- Exception
-    sym("@variable")({ fg = Identifier.fg.ro(80).li(20) }), -- Identifier
+    sym("@variable")({ fg = Identifier.fg }), -- Identifier
     -- sym"@type"              { }, -- Type
     -- sym"@type.definition"   { }, -- Typedef
     -- sym"@storageclass"      { }, -- StorageClass
