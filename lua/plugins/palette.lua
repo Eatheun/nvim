@@ -58,6 +58,40 @@ return {
           },
         },
       },
+
+      custom_highlight_group = "override",
+      custom_highlight_groups = {
+        override = {
+          -- add one table per override:
+          {
+            "Identifier",
+            -- foreground, or nil
+            orange_mac,
+            -- background, or nil
+            nil,
+            -- style(s) to apply, or nil
+            { "italic" }, --{ "italic", "underline", "bold" },
+          },
+          {
+            "Operator",
+            -- foreground, or nil
+            yellow_mac_light,
+            -- background, or nil
+            nil,
+            -- style(s) to apply, or nil
+            { "bold" }, --{ "italic", "underline", "bold" },
+          },
+          {
+            "Keyword",
+            -- foreground, or nil
+            yellow_mac_light,
+            -- background, or nil
+            nil,
+            -- style(s) to apply, or nil
+            { "bold" }, --{ "italic", "underline", "bold" },
+          },
+        },
+      },
     })
 
     vim.cmd([[colorscheme palette]])
