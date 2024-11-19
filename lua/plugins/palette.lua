@@ -41,10 +41,10 @@ return {
           custom_accent_palette = {
             accent0 = red_mac_light,
             accent1 = yellow_mac_punchy,
-            accent2 = yellow_mac,
+            accent2 = red_mac,
             accent3 = yellow_mac2,
             accent4 = green_mac,
-            accent5 = red_mac,
+            accent5 = yellow_mac,
             accent6 = green_mac_light,
           },
         },
@@ -66,7 +66,7 @@ return {
           {
             "Identifier",
             -- foreground, or nil
-            orange_mac,
+            yellow_mac_punchy,
             -- background, or nil
             nil,
             -- style(s) to apply, or nil
@@ -94,6 +94,7 @@ return {
       },
     })
 
+    vim.api.nvim_set_hl(0, "@lsp.type.variable", { fg = "Purple" })
     vim.cmd([[colorscheme palette]])
   end,
 }
