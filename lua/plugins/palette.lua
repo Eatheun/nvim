@@ -58,43 +58,15 @@ return {
           },
         },
       },
-
-      custom_highlight_group = "override",
-      custom_highlight_groups = {
-        override = {
-          -- add one table per override:
-          {
-            "Identifier",
-            -- foreground, or nil
-            yellow_mac_punchy,
-            -- background, or nil
-            nil,
-            -- style(s) to apply, or nil
-            { "italic" }, --{ "italic", "underline", "bold" },
-          },
-          {
-            "Operator",
-            -- foreground, or nil
-            yellow_mac_light,
-            -- background, or nil
-            nil,
-            -- style(s) to apply, or nil
-            { "bold" }, --{ "italic", "underline", "bold" },
-          },
-          {
-            "Keyword",
-            -- foreground, or nil
-            yellow_mac_light,
-            -- background, or nil
-            nil,
-            -- style(s) to apply, or nil
-            { "bold" }, --{ "italic", "underline", "bold" },
-          },
-        },
-      },
     })
 
-    vim.api.nvim_set_hl(0, "@lsp.type.variable", { fg = "Purple" })
+    -- Set palette
     vim.cmd([[colorscheme palette]])
+
+    -- Add manual overrides with vim.api.nvim_set_hl
+    local ovrhl = vim.api.nvim_set_hl
+    ovrhl(0, "@variable", { fg = yellow_mac, bold = true })
+    ovrhl(0, "Operator", { fg = yellow_mac_light })
+    ovrhl(0, "Keyword", { fg = orange_mac, bold = true })
   end,
 }

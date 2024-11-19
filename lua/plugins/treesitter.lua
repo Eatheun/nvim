@@ -10,6 +10,7 @@ return {
       "html",
       "css",
       "lua",
+      "markdown",
       "java",
       "python",
       "vim",
