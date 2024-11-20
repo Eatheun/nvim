@@ -11,11 +11,11 @@ return {
     local orange_mac_dark = "#b93a04"
     local yellow_mac = "#fdaf17"
     local yellow_mac2 = "#ffce84"
+    local yellow_mac2_dark = "#e09e84"
     local yellow_mac_light = "#fff0c0"
     local yellow_mac_punchy = "#ffef00"
     local green_mac = "#9dd304"
     local green_mac_light = "#eaff61"
-    local green_mac_pale = "#7db304"
     require("palette").setup({
       palettes = {
         main = "custom_main_palette",
@@ -32,7 +32,7 @@ return {
             color3 = yellow_mac_light,
             color4 = orange_mac,
             color5 = yellow_mac,
-            color6 = green_mac_pale,
+            color6 = yellow_mac2_dark,
             color7 = yellow_mac,
             color8 = yellow_mac2,
           },
@@ -68,5 +68,7 @@ return {
     ovrhl(0, "@variable", { fg = yellow_mac, bold = true })
     ovrhl(0, "Operator", { fg = yellow_mac_light })
     ovrhl(0, "Keyword", { fg = orange_mac, bold = true })
+    ovrhl(0, "NeoTreeMessage", { fg = orange_mac_dark, bold = true })
+    ovrhl(0, "NeoTreeDotFile", { fg = orange_mac_dark, bold = true })
   end,
 }
