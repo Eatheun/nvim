@@ -70,5 +70,6 @@ return {
     ovrhl(0, "Keyword", { fg = orange_mac, bold = true })
     ovrhl(0, "NeoTreeMessage", { fg = orange_mac_dark, bold = true })
     ovrhl(0, "NeoTreeDotFile", { fg = orange_mac_dark, bold = true })
+    ovrhl(0, "Number", { fg = yellow_mac_punchy, bold = true })
   end,
 }

@@ -36,10 +36,10 @@ return {
         --   -- tabnr (tabs only)   | int        | the "handle" of the tab, can be converted to its ordinal number using: `vim.api.nvim_tabpage_get_number(buf.tabnr)`
         -- end,
 
-        max_name_length = 16,
+        max_name_length = 32,
         max_prefix_length = 8, -- prefix used when a buffer is de-duplicated
         truncate_names = true, -- whether or not tab names should be truncated
-        tab_size = 12,
+        tab_size = 20,
         diagnostics = "nvim_lsp", -- false | "nvim_lsp" | "coc",
         diagnostics_update_on_event = true, -- use nvim's diagnostic handler
         -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
