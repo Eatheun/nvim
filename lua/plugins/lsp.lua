@@ -9,6 +9,7 @@ return {
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
+    enabled = true,
   },
 
   -- LSP
@@ -17,6 +18,7 @@ return {
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+      { "hrsh7th/nvim-cmp" },
       { "hrsh7th/cmp-nvim-lsp" },
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-buffer" },
