@@ -70,6 +70,7 @@ return {
           "html",
           "cssls",
           "graphql",
+          "emmet_ls",
           "pyright",
         },
         handlers = {
