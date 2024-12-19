@@ -5,13 +5,6 @@ return {
     opts = {},
   },
 
-  -- Autocompletion
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    enabled = true,
-  },
-
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -67,7 +60,6 @@ return {
           "jdtls",
           "lua_ls",
           "svelte",
-          "html",
           "cssls",
           "graphql",
           "emmet_ls",

@@ -7,7 +7,6 @@ return {
       opts = {
         servers = {
           jdtls = {
-            -- your jdtls configuration goes here
             handlers = {
               -- By assigning an empty function, you can remove the notifications
               -- printed to the cmd
@@ -17,9 +16,7 @@ return {
         },
         setup = {
           jdtls = function()
-            require("java").setup({
-              -- your nvim-java configuration goes here
-            })
+            require("java").setup({})
           end,
         },
       },
