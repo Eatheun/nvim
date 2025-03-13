@@ -27,3 +27,5 @@ opt.clipboard:append("unnamedplus")
 
 opt.splitright = true
 opt.splitbelow = true
+
+opt.scrolloff = 0 -- sets the minimum number of lines after cursor
