@@ -23,7 +23,7 @@ opt.termguicolors = true
 opt.background = "light"
 opt.signcolumn = "yes"
 
-opt.clipboard:append("unnamedplus")
+opt.clipboard = ""
 
 opt.splitright = true
 opt.splitbelow = true
