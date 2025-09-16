@@ -18,13 +18,8 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 keymap.set("n", "<leader>nt", "<cmd>edit term://bash<CR>", { desc = "Open new terminal" })
 keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
--- Java tools
-keymap.set("n", "<leader>jr", "<cmd> JavaRunnerRunMain <CR>", { desc = "Run Java main" })
-keymap.set("n", "<leader>jdc", "<cmd> JavaTestDebugCurrentClass <CR>", { desc = "Debug Java class" })
-keymap.set("n", "<leader>jdm", "<cmd> JavaTestDebugCurrentMethod <CR>", { desc = "Debug Java method" })
-keymap.set("n", "<leader>jtc", "<cmd> JavaTestRunCurrentClass <CR>", { desc = "Test Java class" })
-keymap.set("n", "<leader>jtm", "<cmd> JavaTestRunCurrentMethod <CR>", { desc = "Test Java method" })
-keymap.set("n", "<leader>jtv", "<cmd> JavaTestViewLastReport <CR>", { desc = "View last Java test" })
+-- go to definition
+vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
 
 -- Debugging
 keymap.set("n", "<F5>", function()

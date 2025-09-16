@@ -64,6 +64,8 @@ return {
           "graphql",
           "emmet_ls",
           "pyright",
+          "clangd",
+          "rust_analyzer",
         },
         handlers = {
           -- this first function is the "default handler"
@@ -107,6 +109,13 @@ return {
             })
           end,
 
+          ["clangd"] = function()
+            require("lspconfig")["clangd"].setup({
+              capabilities = capabilities,
+              filetypes = { "c", "cpp" },
+            })
+          end,
+
           ["lua_ls"] = function()
             -- configure lua server (with special settings)
             require("lspconfig")["lua_ls"].setup({
@@ -122,6 +131,13 @@ return {
                   },
                 },
               },
+            })
+          end,
+
+          ["rust_analyzer"] = function()
+            require("lspconfig")["rust_analyzer"].setup({
+              capabilities = capabilities,
+              filetypes = { "rs" },
             })
           end,
         },
