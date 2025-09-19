@@ -57,7 +57,6 @@ return {
         ensure_installed = {
           "ts_ls",
           "pylsp",
-          "jdtls",
           "lua_ls",
           "svelte",
           "cssls",
