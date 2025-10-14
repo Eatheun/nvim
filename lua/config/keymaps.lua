@@ -17,23 +17,3 @@ keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }
 -- Terminal commands
 keymap.set("n", "<leader>nt", "<cmd>edit term://bash<CR>", { desc = "Open new terminal" })
 keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
-
--- go to definition
-vim.api.nvim_set_keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true, silent = true })
-
--- Debugging
-keymap.set("n", "<F5>", function()
-  require("dap").continue()
-end)
-keymap.set("n", "<F10>", function()
-  require("dap").step_over()
-end)
-keymap.set("n", "<F11>", function()
-  require("dap").step_into()
-end)
-keymap.set("n", "<F12>", function()
-  require("dap").step_out()
-end)
-keymap.set("n", "<leader>b", function()
-  require("dap").toggle_breakpoint()
-end)
