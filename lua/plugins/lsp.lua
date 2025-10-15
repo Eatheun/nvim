@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     lazy = false,
     opts = {},
   },
@@ -16,8 +16,8 @@ return {
       { "hrsh7th/cmp-nvim-lsp-signature-help" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
-      { "williamboman/mason.nvim" },
-      { "williamboman/mason-lspconfig.nvim" },
+      { "mason-org/mason.nvim" },
+      { "mason-org/mason-lspconfig.nvim" },
     },
     init = function()
       -- Reserve a space in the gutter
@@ -59,10 +59,8 @@ return {
           "pylsp",
           "lua_ls",
           "cssls",
-          "graphql",
           "emmet_ls",
           "pyright",
-          "clangd",
           "rust_analyzer",
         },
         handlers = {
@@ -75,26 +73,11 @@ return {
             })
           end,
 
-          ["graphql"] = function()
-            -- configure graphql language server
-            require("lspconfig")["graphql"].setup({
-              capabilities = capabilities,
-              filetypes = { "graphql", "gql", "typescriptreact", "javascript", "javascriptreact" },
-            })
-          end,
-
           ["emmet_ls"] = function()
             -- configure emmet language server
             require("lspconfig")["emmet_ls"].setup({
               capabilities = capabilities,
               filetypes = { "html", "typescriptreact", "javascript", "javascriptreact", "css", "sass", "scss", "less" },
-            })
-          end,
-
-          ["clangd"] = function()
-            require("lspconfig")["clangd"].setup({
-              capabilities = capabilities,
-              filetypes = { "c", "cpp" },
             })
           end,
 
