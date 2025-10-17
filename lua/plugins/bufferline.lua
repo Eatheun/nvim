@@ -8,7 +8,7 @@ return {
         style_preset = bfl.style_preset.default, -- or bfl.style_preset.minimal,
         themable = true, -- true | false, -- allows highlight groups to be overriden i.e. sets highlights as default
         numbers = function(opts) -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
-          return string.format("%s|%s", opts.ordinal, opts.raise(opts.id))
+          return ""
         end,
         close_command = "bdelete! %d", -- can be a string | function, | false see "Mouse actions"
         right_mouse_command = "bdelete! %d", -- can be a string | function | false, see "Mouse actions"
