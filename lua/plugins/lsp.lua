@@ -25,6 +25,16 @@ return {
       vim.opt.signcolumn = "yes"
     end,
     config = function()
+      vim.filetype.add({
+        extension = {
+          jinja = "html",
+          jinja2 = "html",
+          j2 = "html",
+          njk = "html",
+          py = "python",
+        },
+      })
+
       local lsp_defaults = require("lspconfig").util.default_config
 
       -- Add cmp_nvim_lsp capabilities settings to lspconfig
@@ -48,8 +58,13 @@ return {
         vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
         vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 
-        -- i like hints
-        vim.lsp.inlay_hint.enable()
+        -- i like hints (sometimes)
+        vim.keymap.set(
+          "n",
+          "<leader>ld",
+          "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+          opts
+        )
       end
       vim.api.nvim_create_autocmd("LspAttach", {
         desc = "LSP actions",
@@ -65,6 +80,7 @@ return {
           "emmet_ls",
           "pyright",
           "rust_analyzer",
+          "tailwindcss",
         },
         handlers = {
           -- this first function is the "default handler"
@@ -73,6 +89,13 @@ return {
             require("lspconfig")[server_name].setup({
               on_attach = on_attach_func,
               capabilities = capabilities,
+            })
+          end,
+
+          ["cssls"] = function()
+            require("lspconfig")["cssls"].setup({
+              capabilities = capabilities,
+              filetypes = { "css", "sass", "scss", "less" },
             })
           end,
 
@@ -106,6 +129,32 @@ return {
             require("lspconfig")["rust_analyzer"].setup({
               capabilities = capabilities,
               filetypes = { "rs" },
+            })
+          end,
+
+          ["tailwindcss"] = function()
+            require("lspconfig")["tailwindcss"].setup({
+              capabilities = capabilities,
+              init_options = {
+                userLanguages = {
+                  njk = "html", -- Treat .njk files as html for Tailwind LSP
+                  jinja = "html", -- Treat .jinja files as html for Tailwind LSP
+                },
+              },
+              filetypes = { "njk", "html", "css", "jinja" },
+            })
+          end,
+
+          ["ts_ls"] = function()
+            require("lspconfig")["ts_ls"].setup({
+              capabilities = capabilities,
+              filetypes = {
+                "javascript",
+                "javascriptreact",
+                "typescript",
+                "typescriptreact",
+                "typescript.tsx",
+              },
             })
           end,
         },
