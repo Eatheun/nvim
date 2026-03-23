@@ -13,9 +13,9 @@ cd ~/.fonts && unzip *.zip
 fc-cache -fv
 ```
 
-### Live Grep
-For live `grep` to work, install ripgrep,
+### Requirements
+For live fuzzy finder to work, install `ripgrep`, and for building treesitter languages, install `make` and `gcc`,
 
 ```
-sudo apt install ripgrep
+sudo apt install ripgrep make gcc
 ```
