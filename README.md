@@ -14,8 +14,8 @@ fc-cache -fv
 ```
 
 ### Requirements
-For live fuzzy finder to work, install `ripgrep`, and for building treesitter languages, install `make` and `gcc`,
+For live fuzzy finder and building treesitter languages,
 
 ```
-sudo apt install ripgrep make gcc
+sudo apt install fzf ripgrep make gcc
 ```
