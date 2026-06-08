@@ -1,0 +1,15 @@
+-- Just saving the maccas colours
+
+local pri1 = "#c31c2b"
+local pri1_light = "#d34c5b"
+local pri1_dark = "#950505"
+local pri1_black = "#420505"
+local pri2 = "#ff5800"
+local pri2_dark = "#b93a04"
+local sec1 = "#fdaf17"
+local sec12 = "#ffce84"
+local sec12_dark = "#e09e84"
+local sec1_light = "#fff0c0"
+local sec1_punchy = "#ffef00"
+local sec2 = "#9dd304"
+local sec2_light = "#eaff61"

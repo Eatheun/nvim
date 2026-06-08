@@ -3,19 +3,19 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    local red_mac = "#c31c2b"
-    local red_mac_light = "#d34c5b"
-    local red_mac_dark = "#950505"
-    local red_mac_black = "#420505"
-    local orange_mac = "#ff5800"
-    local orange_mac_dark = "#b93a04"
-    local yellow_mac = "#fdaf17"
-    local yellow_mac2 = "#ffce84"
-    local yellow_mac2_dark = "#e09e84"
-    local yellow_mac_light = "#fff0c0"
-    local yellow_mac_punchy = "#ffef00"
-    local green_mac = "#9dd304"
-    local green_mac_light = "#eaff61"
+    local pri1 = "#f0efe7"
+    local pri1_light = "#5f6180"
+    local pri1_dark = "#2a2c4b"
+    local pri1_black = "#2a2c4b"
+    local pri2 = "#7847cb"
+    local pri2_dark = "#434761"
+    local sec1 = "#5f2cb5"
+    local sec12 = "#"
+    local sec12_dark = "#5e6278"
+    local sec1_light = "#ffffff"
+    local sec1_punchy = "#9362e2"
+    local sec2 = "#9397ad"
+    local sec2_light = "#6c9d1d"
     require("palette").setup({
       palettes = {
         main = "custom_main_palette",
@@ -26,35 +26,35 @@ return {
       custom_palettes = {
         main = {
           custom_main_palette = {
-            color0 = red_mac_black,
-            color1 = red_mac_dark,
-            color2 = orange_mac_dark,
-            color3 = yellow_mac_light,
-            color4 = orange_mac,
-            color5 = yellow_mac,
-            color6 = yellow_mac2_dark,
-            color7 = yellow_mac,
-            color8 = yellow_mac2,
+            color0 = pri1_black,
+            color1 = pri1_dark,
+            color2 = sec2_light,
+            color3 = sec1_light,
+            color4 = pri2,
+            color5 = sec1,
+            color6 = sec12_dark,
+            color7 = sec1,
+            color8 = sec12,
           },
         },
         accent = {
           custom_accent_palette = {
-            accent0 = red_mac_light,
-            accent1 = yellow_mac_punchy,
-            accent2 = red_mac,
-            accent3 = yellow_mac2,
-            accent4 = green_mac,
-            accent5 = yellow_mac,
-            accent6 = green_mac_light,
+            accent0 = pri1_light,
+            accent1 = sec1_punchy,
+            accent2 = pri1,
+            accent3 = sec12,
+            accent4 = sec2,
+            accent5 = sec1,
+            accent6 = sec2_light,
           },
         },
         state = {
           custom_state_palette = {
-            error = red_mac_light,
-            warning = orange_mac,
-            hint = yellow_mac2,
-            ok = green_mac,
-            info = green_mac_light,
+            error = pri1_light,
+            warning = pri2,
+            hint = sec12,
+            ok = sec2,
+            info = sec2_light,
           },
         },
       },
@@ -65,11 +65,11 @@ return {
 
     -- Add manual overrides with vim.api.nvim_set_hl
     local ovrhl = vim.api.nvim_set_hl
-    ovrhl(0, "@variable", { fg = yellow_mac, bold = true })
-    ovrhl(0, "Operator", { fg = yellow_mac_light })
-    ovrhl(0, "Keyword", { fg = orange_mac, bold = true })
-    ovrhl(0, "NeoTreeMessage", { fg = orange_mac_dark, bold = true })
-    ovrhl(0, "NeoTreeDotFile", { fg = orange_mac_dark, bold = true })
-    ovrhl(0, "Number", { fg = yellow_mac_punchy, bold = true })
+    ovrhl(0, "@variable", { fg = sec1, bold = true })
+    ovrhl(0, "Operator", { fg = sec1_light })
+    ovrhl(0, "Keyword", { fg = pri2, bold = true })
+    ovrhl(0, "NeoTreeMessage", { fg = pri2_dark, bold = true })
+    ovrhl(0, "NeoTreeDotFile", { fg = pri2_dark, bold = true })
+    ovrhl(0, "Number", { fg = sec1_punchy, bold = true })
   end,
 }

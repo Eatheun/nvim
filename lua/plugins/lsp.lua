@@ -71,9 +71,55 @@ return {
         callback = on_attach_func,
       })
 
+      -- Per-server overrides. Anything not listed uses the default config
+      -- (on_attach + capabilities). capabilities is merged in for every server.
+      local servers = {
+        cssls = {
+          filetypes = { "css", "sass", "scss", "less" },
+        },
+
+        emmet_ls = {
+          filetypes = { "html", "typescriptreact", "javascript", "javascriptreact", "css", "sass", "scss", "less" },
+        },
+
+        lua_ls = {
+          settings = {
+            Lua = {
+              -- make the language server recognize "vim" global
+              diagnostics = { globals = { "vim" } },
+              completion = { callSnippet = "Replace" },
+            },
+          },
+        },
+
+        -- Python: ignore E501 (line too long) from pycodestyle
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pycodestyle = { ignore = { "E501" } },
+              },
+            },
+          },
+        },
+
+        rust_analyzer = {
+          filetypes = { "rs" },
+        },
+
+        tailwindcss = {
+          init_options = {
+            userLanguages = {
+              njk = "html", -- Treat .njk files as html for Tailwind LSP
+              jinja = "html", -- Treat .jinja files as html for Tailwind LSP
+            },
+          },
+          filetypes = { "njk", "html", "css", "jinja" },
+        },
+      }
+
       require("mason-lspconfig").setup({
         ensure_installed = {
-          "ts_ls",
           "pylsp",
           "lua_ls",
           "cssls",
@@ -83,79 +129,13 @@ return {
           "tailwindcss",
         },
         handlers = {
-          -- this first function is the "default handler"
-          -- it applies to every language server without a "custom handler"
+          -- default handler: applies to every server, merging any per-server override
           function(server_name)
-            require("lspconfig")[server_name].setup({
+            local config = vim.tbl_deep_extend("force", {
               on_attach = on_attach_func,
               capabilities = capabilities,
-            })
-          end,
-
-          ["cssls"] = function()
-            require("lspconfig")["cssls"].setup({
-              capabilities = capabilities,
-              filetypes = { "css", "sass", "scss", "less" },
-            })
-          end,
-
-          ["emmet_ls"] = function()
-            -- configure emmet language server
-            require("lspconfig")["emmet_ls"].setup({
-              capabilities = capabilities,
-              filetypes = { "html", "typescriptreact", "javascript", "javascriptreact", "css", "sass", "scss", "less" },
-            })
-          end,
-
-          ["lua_ls"] = function()
-            -- configure lua server (with special settings)
-            require("lspconfig")["lua_ls"].setup({
-              capabilities = capabilities,
-              settings = {
-                Lua = {
-                  -- make the language server recognize "vim" global
-                  diagnostics = {
-                    globals = { "vim" },
-                  },
-                  completion = {
-                    callSnippet = "Replace",
-                  },
-                },
-              },
-            })
-          end,
-
-          ["rust_analyzer"] = function()
-            require("lspconfig")["rust_analyzer"].setup({
-              capabilities = capabilities,
-              filetypes = { "rs" },
-            })
-          end,
-
-          ["tailwindcss"] = function()
-            require("lspconfig")["tailwindcss"].setup({
-              capabilities = capabilities,
-              init_options = {
-                userLanguages = {
-                  njk = "html", -- Treat .njk files as html for Tailwind LSP
-                  jinja = "html", -- Treat .jinja files as html for Tailwind LSP
-                },
-              },
-              filetypes = { "njk", "html", "css", "jinja" },
-            })
-          end,
-
-          ["ts_ls"] = function()
-            require("lspconfig")["ts_ls"].setup({
-              capabilities = capabilities,
-              filetypes = {
-                "javascript",
-                "javascriptreact",
-                "typescript",
-                "typescriptreact",
-                "typescript.tsx",
-              },
-            })
+            }, servers[server_name] or {})
+            vim.lsp.config[server_name].setup(config)
           end,
         },
       })
