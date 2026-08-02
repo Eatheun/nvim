@@ -1,0 +1,15 @@
+return {
+  pri1 = "#d7c2e7",
+  pri1_light = "#41a3eb",
+  pri1_dark = "#0d77c5",
+  pri1_black = "#302937",
+  pri2 = "#ff4867",
+  pri2_dark = "#d04832",
+  sec1 = "#416eff",
+  sec12 = "#be9100",
+  sec12_dark = "#bf504b",
+  sec1_light = "#fffaff",
+  sec1_punchy = "#ec3263",
+  sec2 = "#c05e59",
+  sec2_light = "#13cd9c",
+}
