@@ -15,8 +15,9 @@ fc-cache -fv
 
 ### Requirements
 
-**Neovim 0.11+** — the LSP setup uses the native `vim.lsp.config()` / `vim.lsp.enable()`
-API, which does not exist on older versions.
+**Neovim 0.12.4+** — the LSP setup needs 0.11+ for the native `vim.lsp.config()` /
+`vim.lsp.enable()` API, and current VimTeX refuses to load below 0.12.4. Debian's
+`neovim` package is far too old (0.7); install via brew or upstream tarball.
 
 Core tools, for the fuzzy finder and building treesitter parsers:
 
