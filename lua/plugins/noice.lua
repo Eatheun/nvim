@@ -7,6 +7,9 @@ return {
   },
   config = function()
     require("noice").setup({
+      presets = {
+        lsp_doc_border = true, -- add a border to hover/signature-help windows
+      },
       cmdline = {
         enabled = true, -- Show the command line in a floating UI
       },

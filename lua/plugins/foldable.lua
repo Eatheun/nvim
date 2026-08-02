@@ -10,6 +10,9 @@ return {
     -- Using ufo provider need remap `zr` and `zm`. If Neovim is 0.6.1, remap yourself
     vim.keymap.set("n", "zr", require("ufo").openAllFolds)
     vim.keymap.set("n", "zm", require("ufo").closeAllFolds)
+    vim.keymap.set("n", "zk", function()
+      require("ufo").peekFoldedLinesUnderCursor()
+    end, { desc = "Peek folded lines under cursor" })
 
     require("ufo").setup({
       provider_selector = function(bufnr, filetype, buftype)
