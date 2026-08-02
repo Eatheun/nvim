@@ -35,12 +35,10 @@ return {
         },
       })
 
-      local lsp_defaults = require("lspconfig").util.default_config
-
-      -- Add cmp_nvim_lsp capabilities settings to lspconfig
+      -- Add cmp_nvim_lsp capabilities settings as the base config for every server
       -- This should be executed before you configure any language server
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
-      lsp_defaults.capabilities = vim.tbl_deep_extend("force", lsp_defaults.capabilities, capabilities)
+      vim.lsp.config("*", { capabilities = capabilities })
 
       -- LspAttach is where you enable features that only work
       -- if there is a language server active in the file
@@ -82,23 +80,23 @@ return {
           filetypes = { "html", "typescriptreact", "javascript", "javascriptreact", "css", "sass", "scss", "less" },
         },
 
+        html = {
+          filetypes = { "html", "njk", "jinja" },
+        },
+
+        -- TypeScript/JavaScript handled by typescript-tools.nvim instead of
+        -- ts_ls directly -- running both attaches two LSP clients per buffer.
+
+        marksman = {
+          filetypes = { "markdown", "markdown.mdx" },
+        },
+
         lua_ls = {
           settings = {
             Lua = {
               -- make the language server recognize "vim" global
               diagnostics = { globals = { "vim" } },
               completion = { callSnippet = "Replace" },
-            },
-          },
-        },
-
-        -- Python: ignore E501 (line too long) from pycodestyle
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                pycodestyle = { ignore = { "E501" } },
-              },
             },
           },
         },
@@ -116,29 +114,45 @@ return {
           },
           filetypes = { "njk", "html", "css", "jinja" },
         },
+
+        -- Python: pyright handles types/hover/goto, ruff handles lint + format
+        ruff = {
+          init_options = {
+            settings = {
+              hover = false, -- avoid duplicate hover popups with pyright
+              lineLength = 120,
+            },
+          },
+        },
       }
 
+      local server_list = {
+        "lua_ls",
+        "cssls",
+        "emmet_ls",
+        "html",
+        "marksman",
+        "pyright",
+        "ruff",
+        "rust_analyzer",
+        "tailwindcss",
+      }
+
+      -- apply per-server overrides (capabilities already set as the '*' base above)
+      for server_name, cfg in pairs(servers) do
+        vim.lsp.config(server_name, cfg)
+      end
+
       require("mason-lspconfig").setup({
-        ensure_installed = {
-          "pylsp",
-          "lua_ls",
-          "cssls",
-          "emmet_ls",
-          "pyright",
-          "rust_analyzer",
-          "tailwindcss",
-        },
-        handlers = {
-          -- default handler: applies to every server, merging any per-server override
-          function(server_name)
-            local config = vim.tbl_deep_extend("force", {
-              on_attach = on_attach_func,
-              capabilities = capabilities,
-            }, servers[server_name] or {})
-            vim.lsp.config[server_name].setup(config)
-          end,
-        },
+        ensure_installed = server_list,
+        -- automatic_enable would auto-attach ANY mason-installed server
+        -- matching the filetype, not just the ones in server_list above --
+        -- caused a stale leftover pylsp install to silently race ruff for
+        -- python formatting requests. We enable exactly server_list instead.
+        automatic_enable = false,
       })
+
+      vim.lsp.enable(server_list)
     end,
   },
 }
